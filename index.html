@@ -24,11 +24,18 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+        
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="css/reset.css">
+        <link rel="stylesheet" href="css/style.css">
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/style.css">
+        <!--Firebase-->
+        <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-analytics.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.3.0/firebase-database.js"></script>
+      
+
 </head>
 
 <body>
@@ -54,47 +61,10 @@
 
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <th val="trainName" scope="row">Amtrack</th>
-                    <td val="destination"></td>
-                    <td val="frequency"></td>
-                    <td val="nextArrival"></td>
-                    <td val="minutesAway"></td>
 
-                </tr>
-                <tr>
-                    <th scope="row">BART</th>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
 
-                </tr>
-                <tr>
-                    <th scope="row">Ubahn</th>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <th scope="row">Cal Train</th>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <th scope="row"></th>
-                    <td></td>
-                    <td> </td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
+            <tbody id='newRow'>
+              
             </tbody>
         </table>
 
@@ -106,7 +76,7 @@
             </div>
 
             <div class="form-group"">
-                <label for=" destination">Destination</label>
+                <label for="destination">Destination</label>
                 <input type="destination" class="form-control" id="destination" placeholder=" ">
             </div>
             <div class="form-group">
@@ -118,21 +88,17 @@
                 <input type="frequency" class="form-control" id="frequency" placeholder=" ">
             </div>
 
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary" id='addTrain'>Submit</button>
         </form>
 
 
 
     </div>
-
-
-    <script src="javascript/javascript.js" async defer></script>
+    
+    <script src="https://code.jquery.com/jquery.js"></script>
     <script src="moment/moment.min.js.js"></script>
-    <script>
+    <script text="javascript" src='javascript/javascript.js'></script>
 
-        console.log(moment());
-
-    </script>
 </body>
 
 </html>
