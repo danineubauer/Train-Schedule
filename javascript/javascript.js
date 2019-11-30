@@ -21,7 +21,9 @@ var firebaseConfig = {
   var destination = ''; 
   var firstTrainTime = ''; 
   var frequency = ''; 
-  var newRowAdd = ''; 
+  
+  var nextArrival = '';
+  var minutesAway = '';  
 
   //capture button click: 
 
@@ -33,11 +35,16 @@ var firebaseConfig = {
     firstTrainTime = $('#firstTrainTime').val().trim(); 
     frequency = $('#frequency').val().trim();  
     
+    minutesAway = moment().endOf(frequency).fromNow();
+     
+
     dataRef.ref().push({ 
         trainName, 
         destination,
         firstTrainTime, 
         frequency,
+        nextArrival,
+        minutesAway,
         dateAdded: firebase.database.ServerValue.TIMESTAMP
     });  
 });
@@ -48,11 +55,14 @@ dataRef.ref().on('child_added', function(childSnapshot) {
     console.log(childSnapshot.val().destination);
     console.log(childSnapshot.val().firstTrainTime);
     console.log(childSnapshot.val().frequency); 
+    console.log(childSnapshot.val().nextArrival); 
+    console.log(childSnapshot.val().minutesAway);
 
     $('#newRow').append('<tr><td>' + childSnapshot.val().trainName + '</td><td>' 
         + childSnapshot.val().destination + '</td><td>' 
-        + childSnapshot.val().firstTrainTime + '</td><td>' 
-        + childSnapshot.val().frequency + '</td></tr>');
+        + childSnapshot.val().frequency + '</td><td>' 
+        + childSnapshot.val().nextArrival + '</td><td>'
+        + childSnapshot.val().minutesAway + '</td></tr>');
             
 }, function(errorObject) { 
     console.log('errors handled: ' + errorObject.code);
