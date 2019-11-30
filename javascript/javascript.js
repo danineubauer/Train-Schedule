@@ -32,30 +32,30 @@ var firebaseConfig = {
     destination = $('#destination').val().trim();
     firstTrainTime = $('#firstTrainTime').val().trim(); 
     frequency = $('#frequency').val().trim();  
-    newRowAdd = $("#newRow").append("<tr><td>" + trainName + "</td><td>" + destination + "</td><td>" + firstTrainTime + "</td><td>" + frequency + "</td></tr>")
     
     dataRef.ref().push({ 
-        trainName: trainName, 
-        destination: destination,
-        firstTrainTime: firstTrainTime, 
-        frequency: frequency,
-        newRowAdd: newRowAdd,
+        trainName, 
+        destination,
+        firstTrainTime, 
+        frequency,
         dateAdded: firebase.database.ServerValue.TIMESTAMP
-    });
+    });  
+});
+
+dataRef.ref().on('child_added', function(childSnapshot) {    
     
-    
+    console.log(childSnapshot.val().trainName);
+    console.log(childSnapshot.val().destination);
+    console.log(childSnapshot.val().firstTrainTime);
+    console.log(childSnapshot.val().frequency); 
+
+    $('#newRow').append('<div>' + childSnapshot.val().trainName + '</div>');
+            
+}, function(errorObject) { 
+    console.log('errors handled: ' + errorObject.code);
 })
 
-  dataRef.ref().on('child_added', function(childSnapshot) {    
-    console.log(childSnapshot.val()); 
-    console.log("hi")
-    $('#newRow').append(childSnapshot.val().newRowAdd) 
-    
-    }, function(errorObject) { 
-    console.log('errors handled: ' + errorObject.code);
-    })
-
 dataRef.ref().orderByChild('dataAdded').limitToLast(1).on('child_added', function(snapshot) {
-    $('#newRow').text(snapshot.val().newRowAdd); 
+    $('#newRow').text(snapshot.val().trainName); 
 })
 
