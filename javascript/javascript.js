@@ -49,13 +49,14 @@ dataRef.ref().on('child_added', function(childSnapshot) {
     console.log(childSnapshot.val().firstTrainTime);
     console.log(childSnapshot.val().frequency); 
 
-    $('#newRow').append('<div>' + childSnapshot.val().trainName + '</div>');
+    $('#newRow').append('<tr><td>' + childSnapshot.val().trainName + '</td><td>' 
+        + childSnapshot.val().destination + '</td><td>' 
+        + childSnapshot.val().firstTrainTime + '</td><td>' 
+        + childSnapshot.val().frequency + '</td></tr>');
             
 }, function(errorObject) { 
     console.log('errors handled: ' + errorObject.code);
 })
 
-dataRef.ref().orderByChild('dataAdded').limitToLast(1).on('child_added', function(snapshot) {
-    $('#newRow').text(snapshot.val().trainName); 
-})
+
 
